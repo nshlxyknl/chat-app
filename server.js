@@ -9,9 +9,17 @@ const cors = require('cors');
 
 const app = express();
 const server = http.createServer(app);
+
+const allowedOrigins = (
+  process.env.CLIENT_URL || 'http://localhost:3000,http://localhost:3001'
+)
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
 const io = new SocketIOServer(server, {
   cors: {
-    origin: ['http://localhost:3000', 'http://localhost:3001'],
+    origin: allowedOrigins,
     methods: ['GET', 'POST'],
     credentials: true,
   },
@@ -195,10 +203,10 @@ app.get('/api/stats', (_, res) => {
 
 // ==================== SERVER STARTUP ====================
 
-const PORT = process.env.SOCKET_PORT || 3001;
+const PORT = process.env.PORT || process.env.SOCKET_PORT || 3001;
 
 server.listen(PORT, () => {
-  console.log(`🚀 WebSocket server running on http://localhost:${PORT}`);
+  console.log(`🚀 WebSocket server running on port ${PORT}`);
   console.log(`📡 Ready for WebSocket connections`);
   console.log(`🏥 Health check: http://localhost:${PORT}/health`);
 });

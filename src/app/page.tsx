@@ -12,7 +12,6 @@ import ConnectionStatus from '../../components/ConnectionStatus';
 import LoginForm from '../../components/LoginForm';
 
 export default function ChatPage() {
-  // State management
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [users, setUsers] = useState<User[]>([]);
@@ -20,7 +19,6 @@ export default function ChatPage() {
   const [typingUsers, setTypingUsers] = useState<TypingUser[]>([]);
   const [showLogin, setShowLogin] = useState(true);
 
-  // Initialize socket connection and event listeners
   useEffect(() => {
     const socket = initSocket();
 
