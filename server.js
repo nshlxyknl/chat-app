@@ -11,7 +11,7 @@ const app = express();
 const server = http.createServer(app);
 
 const allowedOrigins = (
-  process.env.CLIENT_URL || 'http://localhost:3000,http://localhost:3001'
+  process.env.CLIENT_URL
 )
   .split(',')
   .map((origin) => origin.trim())

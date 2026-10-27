@@ -9,7 +9,7 @@ export const initSocket = (): Socket => {
     return socket;
   }
 
-  const socketUrl = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:3001';
+  const socketUrl = process.env.NEXT_PUBLIC_SOCKET_URL 
 
   socket = io(socketUrl, {
     reconnection: true,
